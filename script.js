@@ -98,7 +98,7 @@ function renderItems(items) {
   items.forEach(item => {
     const subgroup = item.subgroup && item.subgroup.trim()
       ? item.subgroup.trim()
-      : "Others";
+      : "All Items";
 
     if (!grouped[subgroup]) {
       grouped[subgroup] = [];
@@ -107,46 +107,46 @@ function renderItems(items) {
   });
 
   Object.keys(grouped).forEach(subgroup => {
-    const cover = subgroupCovers[subgroup] || "";
+  const cover = subgroupCovers[subgroup] || "";
 
-    const section = document.createElement("div");
-    section.className = "subgroup";
+  const section = document.createElement("div");
+  section.className = "subgroup";
 
-    section.innerHTML = `
-      <div class="subgroup-header" onclick="toggleSubgroup(this)">
-        ${cover ? `<img src="${cover}" alt="${subgroup}">` : ""}
-        <div class="subgroup-overlay">
-          <h2>${subgroup}</h2>
-          <span class="chevron">⌄</span>
-        </div>
+  section.innerHTML = `
+    <div class="subgroup-header" onclick="toggleSubgroup(this)">
+      ${cover
+  ? `<img src="${cover}" alt="${subgroup}">`
+  : `<div class="subgroup-placeholder"></div>`
+}
+      <div class="subgroup-overlay">
+        <h2>${subgroup}</h2>
+        <span class="chevron">⌄</span>
       </div>
+    </div>
 
-      <div class="subgroup-items">
-        ${grouped[subgroup].map(item => `
-          <div class="item">
-            <img loading="lazy" src="${item.image_url}" alt="${item.name}">
-            <div>
-              <h3>
-                  ${item.name}
-                  <span style="margin-left:6px">${getTypeIcon(item.type)}</span>
-                  ${renderBestSeller(item.bestseller)}
-                  </h3>
-              <p>${item.description}</p>
-              ${item.spice ? `<div class="spice">${renderSpice(item.spice)}</div>` : ""}
-              <div class="price">₹${item.price}</div>
-              ${item.protein ? `<div class="cal">Protein: ${item.protein}g</div>` : ""}
-              ${renderFlavours(item.flavour_group)}
-              ${renderAddons(item.addons)}
-
-
-            </div>
+    <div class="subgroup-items">
+      ${grouped[subgroup].map(item => `
+        <div class="item">
+          <img loading="lazy" src="${item.image_url}" alt="${item.name}">
+          <div>
+            <h3>
+              ${item.name}
+              <span style="margin-left:6px">${getTypeIcon(item.type)}</span>
+            </h3>
+            <p>${item.description}</p>
+            <div class="price">₹${item.price}</div>
+            ${item.protein ? `<div class="cal">Protein: ${item.protein}g</div>` : ""}
+            ${renderFlavours(item.flavour_group)}
+            ${renderAddons(item.addons)}
           </div>
-        `).join("")}
-      </div>
-    `;
+        </div>
+      `).join("")}
+    </div>
+  `;
 
-    menuEl.appendChild(section);
-  });
+  menuEl.appendChild(section);
+});
+
 }
 
 function renderAddons(enabled) {
