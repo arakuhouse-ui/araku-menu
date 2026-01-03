@@ -27,6 +27,12 @@ header p {
   color: #666;
 }
 
+.brand img {
+  max-width: 140px;
+  margin-bottom: 6px;
+}
+
+
 nav {
   display: flex;
   gap: 8px;
@@ -93,3 +99,152 @@ main {
   font-size: 12px;
   color: #999;
 }
+
+.search-box {
+  padding: 10px;
+  background: white;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.cal {
+  font-size: 12px;
+  color: #555;
+  margin-top: 4px;
+}
+
+.subgroup {
+  margin-bottom: 14px;
+}
+
+.subgroup-header {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.subgroup-header img {
+  width: 100%;
+  border-radius: 12px 12px 0 0;
+}
+
+
+.chevron {
+  font-size: 16px;
+  color: #666;
+}
+
+
+.flavours {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #555;
+}
+
+.flavour-title {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.flavour-line {
+  line-height: 1.4;
+}
+
+footer.info {
+  padding: 14px 12px;
+  font-size: 12px;
+  color: #666;
+  background: #fafafa;
+}
+
+.badge {
+  background: #fff3cd;
+  color: #856404;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  margin-left: 6px;
+  font-weight: 600;
+}
+
+.spice {
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.addons {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #555;
+}
+
+.addon-title {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.subgroup-items {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.25s ease;
+}
+
+.subgroup-items.open {
+  max-height: 2000px; /* large enough for content */
+  opacity: 1;
+}
+
+
+.subgroup-header {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* CONTROL COVER IMAGE SIZE HERE */
+.subgroup-header img {
+  width: 100%;
+  height: 160px;          /* 👈 THIS FIXES "TOO BIG" */
+  object-fit: cover;
+  display: block;
+}
+
+/* DARK OVERLAY + CENTERED CONTENT */
+.subgroup-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(0,0,0,0.35),
+    rgba(0,0,0,0.35)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* TITLE TEXT */
+.subgroup-overlay h2 {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  margin: 0;
+}
+
+/* CHEVRON */
+.subgroup-overlay .chevron {
+  color: #fff;
+  font-size: 18px;
+}
+
+
