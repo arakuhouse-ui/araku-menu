@@ -229,3 +229,76 @@ searchEl.addEventListener("input", e => {
   );
   renderItems(results);
 });
+
+
+
+
+const META_URL = `https://opensheet.elk.sh/${SHEET_ID}/meta`;
+
+fetch(META_URL)
+  .then(res => res.json())
+  .then(meta => {
+    if (!meta || !meta[0]) return;
+
+    const instaCount = document.getElementById("insta-count");
+    const googleRating = document.getElementById("google-rating");
+
+    animateNumber(instaCount, parseInt(meta[0].instagram_followers), " followers");
+    animateNumber(
+      googleRating,
+      meta[0].google_rating,
+      ` (${meta[0].google_reviews}+ reviews)`
+    );
+  });
+
+
+
+
+
+  function animateNumber(el, finalValue, suffix = "", duration = 900) {
+  let start = 0;
+  const startTime = performance.now();
+
+  function update(currentTime) {
+    const progress = Math.min((currentTime - startTime) / duration, 1);
+    const value = Math.floor(progress * finalValue);
+    el.textContent = `· ${value}${suffix}`;
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    } else {
+      el.textContent = `· ${finalValue}${suffix}`;
+    }
+  }
+
+  requestAnimationFrame(update);
+}
+
+
+fetch(META_URL)
+  .then(res => res.json())
+  .then(meta => {
+    if (!meta || !meta[0]) return;
+
+    /* EXISTING CODE (keep this) */
+    const instaCount = document.getElementById("insta-count");
+    const googleRating = document.getElementById("google-rating");
+
+    animateNumber(instaCount, parseInt(meta[0].instagram_followers), " followers");
+    animateNumber(
+      googleRating,
+      meta[0].google_rating,
+      ` (${meta[0].google_reviews}+ reviews)`
+    );
+
+    /* FESTIVE BANNER */
+    if (meta[0].banner_enabled === "yes" && meta[0].banner_text) {
+      const banner = document.getElementById("banner");
+      banner.textContent = meta[0].banner_text;
+      banner.classList.add(meta[0].banner_type || "festive");
+      banner.style.display = "block";
+    }
+  });
+
+
+  
