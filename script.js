@@ -17,6 +17,28 @@ const flavourConfig = {
   premium: ["Nutella", "Pistachio", "White Chocolate", "Lotus Biscoff"]
 };
 
+const simpleFlavourConfig = {
+  iced_tea: [
+    "Lime",
+    "Cinnamon",
+    "Orange",
+    "Strawberry",
+    "Blueberry",
+    "Mango",
+    "Lychee",
+    "Peach"
+  ],
+  cheesecake: [
+    "Blueberry",
+    "Strawberry",
+    "Mango",
+    "Biscoff",
+    "Raspberry"
+  ]
+};
+
+
+
 const addonConfig = {
   items: [
     "Oat Milk (+₹40)",
@@ -186,24 +208,47 @@ function toggleSubgroup(header) {
   }
 }
 
+function renderFlavours(flavourGroup) {
+  if (!flavourGroup) return "";
 
-function renderFlavours(enabled) {
-  if (enabled !== "yes") return "";
+  // ☕ COFFEE (existing logic preserved)
+  if (flavourGroup === "coffee") {
+    return `
+      <div class="flavours">
+        <div class="flavour-title">Flavor add-on</div>
 
-  return `
-    <div class="flavours">
-      <div class="flavour-title">Flavor add-on</div>
-      <div class="flavour-line">
-         flavours (+₹${flavourConfig.syrupPrice}):
-        ${flavourConfig.syrup.join(" | ")}
+        <div class="flavour-line">
+          Flavours (+₹${flavourConfig.syrupPrice}):
+          ${flavourConfig.syrup.join(" | ")}
+        </div>
+
+        <div class="flavour-line">
+          Premium flavours (+₹${flavourConfig.premiumPrice}):
+          ${flavourConfig.premium.join(" | ")}
+        </div>
       </div>
-      <div class="flavour-line">
-        Premium flavours (+₹${flavourConfig.premiumPrice}):
-        ${flavourConfig.premium.join(" | ")}
+    `;
+  }
+
+  // 🍹 ICED TEA & 🍰 CHEESECAKE (simple list)
+  if (simpleFlavourConfig[flavourGroup]) {
+    return `
+      <div class="flavours">
+        <div class="flavour-title">Flavours</div>
+        <div class="flavour-line">
+          ${simpleFlavourConfig[flavourGroup].join(" | ")}
+        </div>
       </div>
-    </div>
-  `;
+    `;
+  }
+
+  return "";
 }
+
+
+
+
+
 
 function renderSpice(level) {
   if (level === "mild") return "🌶️";
@@ -301,4 +346,3 @@ fetch(META_URL)
   });
 
 
-  
