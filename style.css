@@ -28,7 +28,7 @@ header p {
 }
 
 .brand img {
-  max-width: 140px;
+  max-width: 180px;
   margin-bottom: 6px;
 }
 
@@ -179,6 +179,7 @@ footer.info {
   margin-top: 2px;
 }
 
+
 .addons {
   margin-top: 6px;
   font-size: 12px;
@@ -198,7 +199,7 @@ footer.info {
 }
 
 .subgroup-items.open {
-  max-height: 2000px; /* large enough for content */
+  max-height: none; /* large enough for content */
   opacity: 1;
 }
 
@@ -213,7 +214,7 @@ footer.info {
 /* CONTROL COVER IMAGE SIZE HERE */
 .subgroup-header img {
   width: 100%;
-  height: 160px;          /* 👈 THIS FIXES "TOO BIG" */
+  height: 70%;          /* 👈 THIS FIXES "TOO BIG" */
   object-fit: cover;
   display: block;
 }
