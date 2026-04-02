@@ -11,8 +11,8 @@ let categories = [];
 let activeCategory = "";
 
 const flavourConfig = {
-  syrupPrice: 40,
-  premiumPrice: 75,
+  syrupPrice: 30,
+  premiumPrice: 60,
   syrup: ["Vanilla", "Hazelnut", "Caramel", "Irish", "Cinnamon"],
   premium: ["Nutella", "Pistachio", "White Chocolate", "Lotus Biscoff"]
 };
@@ -61,7 +61,11 @@ const subgroupCovers = {
   "Egg & Breakfast": "images/covers/egg-breakfast.webp",
   "Breads & Handhelds": "images/covers/breads-handhelds.webp",
   "Pastas": "images/covers/pastas.webp",
-  "Rice & Bowls": "images/covers/rice-bowls.webp"
+  "Rice & Bowls": "images/covers/rice-bowls.webp",
+  "House special": "images/covers/desserts.webp",
+  "Icecream": "images/covers/icecream.webp"
+
+
 };
 
 
@@ -154,7 +158,11 @@ function renderItems(items) {
             <h3>
               ${item.name}
               <span style="margin-left:6px">${getTypeIcon(item.type)}</span>
+              <span style="margin-left:6px">${renderSpice(item.spice_level)}</span>
             </h3>
+            <div class="item-badges">
+            ${renderBestSeller(item.best_seller)}
+            </div>
             <p>${item.description}</p>
             <div class="price">₹${item.price}</div>
             ${item.protein ? `<div class="cal">Protein: ${item.protein}g</div>` : ""}
@@ -191,6 +199,8 @@ function toggleSubgroup(header) {
 
   const items = header.nextElementSibling;
   const chevron = header.querySelector(".chevron");
+ 
+
 
   // Close all others
   allItems.forEach(el => {
