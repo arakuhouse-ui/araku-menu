@@ -63,7 +63,8 @@ const subgroupCovers = {
   "Pastas": "images/covers/pastas.webp",
   "Rice & Bowls": "images/covers/rice-bowls.webp",
   "House special": "images/covers/desserts.webp",
-  "Icecream": "images/covers/icecream.webp"
+  "Icecream": "images/covers/icecream.webp",
+  "Seasonal": "images/covers/seasonal.webp"
 
 
 };
