@@ -34,7 +34,23 @@ const simpleFlavourConfig = {
     "Mango",
     "Biscoff",
     "Raspberry"
+  ],
+  garlicbread: [
+    "cheese + ₹30",
+    "chilli cheese + ₹30"
+  ],
+  soup: [
+    "1/2 + ₹50"
   ]
+
+
+
+
+
+
+
+
+
 };
 
 
